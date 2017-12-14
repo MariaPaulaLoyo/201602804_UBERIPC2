@@ -5,18 +5,9 @@
 -- HeidiSQL Versión:             9.4.0.5125
 -- --------------------------------------------------------
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
-
--- Volcando estructura de base de datos para uber
 CREATE DATABASE IF NOT EXISTS `uber` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `uber`;
 
--- Volcando estructura para tabla uber.cliente
 CREATE TABLE IF NOT EXISTS `cliente` (
   `IDcliente` int(11) NOT NULL,
   `EdadCliente` int(11) NOT NULL,
@@ -25,8 +16,11 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   PRIMARY KEY (`IDcliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
--- Volcando estructura para tabla uber.conductor
+ALTER TABLE cliente 
+	ALTER COLUMN NombreCliente varchar 
+	
+	
+
 CREATE TABLE IF NOT EXISTS `conductor` (
   `IDconductor` int(11) NOT NULL,
   `NombreConductor` varchar(50) NOT NULL,
@@ -35,8 +29,6 @@ CREATE TABLE IF NOT EXISTS `conductor` (
   PRIMARY KEY (`IDconductor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
--- Volcando estructura para tabla uber.especificaciones
 CREATE TABLE IF NOT EXISTS `especificaciones` (
   `IDespecificaciones` int(11) NOT NULL,
   `ModeloTransporte` varchar(100) NOT NULL,
@@ -45,8 +37,6 @@ CREATE TABLE IF NOT EXISTS `especificaciones` (
   PRIMARY KEY (`IDespecificaciones`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
--- Volcando estructura para tabla uber.serviciocliente
 CREATE TABLE IF NOT EXISTS `serviciocliente` (
   `IDserviciocliente` int(11) NOT NULL,
   `FechaServicio` int(11) DEFAULT NULL,
@@ -56,8 +46,6 @@ CREATE TABLE IF NOT EXISTS `serviciocliente` (
   CONSTRAINT `FK1IDCliente` FOREIGN KEY (`IDcliente`) REFERENCES `cliente` (`IDcliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
--- Volcando estructura para tabla uber.servicios
 CREATE TABLE IF NOT EXISTS `servicios` (
   `IDServicio` int(11) NOT NULL,
   `Tipo_Cliente` varchar(50) DEFAULT NULL,
@@ -75,8 +63,6 @@ CREATE TABLE IF NOT EXISTS `servicios` (
   CONSTRAINT `FK3IDconductor` FOREIGN KEY (`IDconductor`) REFERENCES `conductor` (`IDconductor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
--- Volcando estructura para tabla uber.vehiculo
 CREATE TABLE IF NOT EXISTS `vehiculo` (
   `IDvehiculo` int(11) NOT NULL,
   `TipoTransporte` int(11) NOT NULL,
@@ -90,8 +76,6 @@ CREATE TABLE IF NOT EXISTS `vehiculo` (
   CONSTRAINT `FK2IDConductor` FOREIGN KEY (`IDConductor`) REFERENCES `conductor` (`IDconductor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
--- Volcando estructura para tabla uber.viajecliente
 CREATE TABLE IF NOT EXISTS `viajecliente` (
   `IDviajeCliente` int(11) NOT NULL,
   `UbicacionCliente` varchar(50) DEFAULT NULL,
@@ -105,8 +89,6 @@ CREATE TABLE IF NOT EXISTS `viajecliente` (
   CONSTRAINT `FK2IDCliente` FOREIGN KEY (`IDcliente`) REFERENCES `cliente` (`IDcliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
--- Volcando estructura para tabla uber.viajes
 CREATE TABLE IF NOT EXISTS `viajes` (
   `IDviaje` int(11) NOT NULL,
   `TipoViaje` varchar(50) NOT NULL,
@@ -120,7 +102,3 @@ CREATE TABLE IF NOT EXISTS `viajes` (
   CONSTRAINT `FK1IDconductor` FOREIGN KEY (`IDConductor`) REFERENCES `conductor` (`IDconductor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- La exportación de datos fue deseleccionada.
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
