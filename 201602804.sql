@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 ALTER TABLE cliente 
 	ALTER COLUMN NombreCliente varchar 
 	
-	
+ALTER TABLE cliente 
+	ADD telefono numeric (8,0) null 
 
 CREATE TABLE IF NOT EXISTS `conductor` (
   `IDconductor` int(11) NOT NULL,
